@@ -18,8 +18,13 @@ body {
 }
 
 .box {
-    background-color: bisque;
+    background-color: #292223;
     height: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+
+
 }
 
 .box span{
