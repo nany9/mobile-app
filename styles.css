@@ -1,3 +1,29 @@
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
 body {
     background-color: black;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    height: var(--tg-viewport-height);
 }
+
+#test {
+    font-family: 'SF Pro Display', sans-serif;
+    color: white;
+    font-weight: 700;
+    font-size: 72px;
+}
+
+.box {
+    background-color: bisque;
+    height: 70px;
+}
+
+.box span{
+    color: white;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
