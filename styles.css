@@ -19,18 +19,31 @@ body {
 
 .box {
     background-color: #292223;
-    height: 70px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 12px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+
+    text-align: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
 
 }
 
 .box span{
     color: white;
-    max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+ 
+    font-family: 'SF Pro Display', sans-serif;
+    color: white;
 }
+
+.main{
+    background-color: #121010;
+    text-align: center;
+}
+
 
