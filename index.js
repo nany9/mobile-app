@@ -7,7 +7,8 @@ tg.MainButton.text = 'Купить';
 tg.MainButton.show();
 
 contact_btn.addEventListener('click', () => {
-    tg.requestContact(function(phone){
+    tg.requestContact(function(status, phone){
+        alert(status);
         phone_input.value = phone;
     });
 });
