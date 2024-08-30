@@ -7,10 +7,11 @@ tg.MainButton.text = 'Купить';
 tg.MainButton.show();
 
 contact_btn.addEventListener('click', () => {
-    tg.requestContact(function(status, phone){
+    tg.requestContact(function(status, data){
         alert(status);
         console.log('status',status);
-        console.log('nomer:',phone);
+        const phone = data.responseUnsafe?.contact?.phone_number;
+        console.log('nomer:', phone);
         phone_input.value = phone;
     });
 });
