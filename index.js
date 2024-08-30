@@ -9,6 +9,8 @@ tg.MainButton.show();
 contact_btn.addEventListener('click', () => {
     tg.requestContact(function(status, phone){
         alert(status);
+        console.log('status',status);
+        console.log('nomer:',phone);
         phone_input.value = phone;
     });
 });
