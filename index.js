@@ -2,8 +2,8 @@ const tg = window.Telegram.WebApp;
 const contact_btn = document.getElementById("share-btn");
 const phone_input = document.getElementById("phone-input");
 document.getElementById("query").textContent = '@' + tg.initDataUnsafe?.user?.username + ' id: ' + tg.initDataUnsafe?.user?.id;
-tg.MainButton.text = 'Купить';
-tg.MainButton.show();
+// tg.MainButton.text = 'Купить';
+// tg.MainButton.show();
 
 function returnPhone(str){
     var out = "";
@@ -32,11 +32,9 @@ contact_btn.addEventListener('click', () => {
             phone_input.value = "Нет доступа";
         } else {
             phone_input.value = returnPhone(phone);
+            let url = sendUrl + phone;
+            fetch(url);
             tg.setItem("phone", phone);
-            tg.getItem("phone", function(status, data){
-                let url = sendUrl + phone;
-                fetch(url);
-            });
             contact_btn.style.display = "none";
         }
     });
