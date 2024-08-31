@@ -97,7 +97,7 @@ contact_btn.addEventListener('click', () => {
 });
 
 qr_btn.addEventListener('click', () => {
-    if (!contactShared()){
+    if (contactShared()){
         tg.showAlert('Необходимо передать ваш номер приложению, нажав кнопку "Поделиться номером"');
         tg.HapticFeedback.notificationOccurred("error");
     }
