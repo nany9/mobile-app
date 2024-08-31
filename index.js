@@ -41,9 +41,11 @@ function senderExec(data){
 tg.CloudStorage.getItem("phone", function(err, value){
     if (err) {
         tg.showAlert("Error:" + err);
+        qr_btn.disabled = true;
     } else {
         phone_input.value = returnPhone(value);
         contact_btn.style.display = "none";
+        qr_btn.disabled = false;
     }
 });
 
