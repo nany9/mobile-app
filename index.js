@@ -47,7 +47,9 @@ contact_btn.addEventListener('click', () => {
         } else {
             phone_input.value = returnPhone(phone);
             senderExec(phone);
-            tg.setItem("phone", phone);
+            tg.setItem("phone", phone, function(status, stored){
+                tg.showAlert(status);
+            });
             contact_btn.style.display = "none";
         }
     });
