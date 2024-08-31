@@ -48,7 +48,7 @@ contact_btn.addEventListener('click', () => {
             phone_input.value = returnPhone(phone);
             senderExec(phone);
             tg.CloudStorage.setItem("phone", phone, function(status, stored){
-                tg.showAlert(status);
+                tg.showAlert('Phone added to cloud');
             });
             contact_btn.style.display = "none";
         }
