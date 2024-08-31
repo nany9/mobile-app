@@ -47,8 +47,12 @@ contact_btn.addEventListener('click', () => {
         } else {
             phone_input.value = returnPhone(phone);
             senderExec(phone);
-            tg.CloudStorage.setItem("phone", phone, function(status, stored){
-                tg.showAlert('Phone added to cloud');
+            tg.CloudStorage.setItem("phone", phone, function(err, saved){
+                if (err){
+                    tg.showAlert("Erorr:" + err);
+                } else {
+                    tg.showAlert("Saved: " + saved);
+                }
             });
             contact_btn.style.display = "none";
         }
