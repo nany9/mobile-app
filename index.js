@@ -25,6 +25,13 @@ function returnPhone(str){
     return out; 
 }
 
+function transformQrText(str){
+    var new_str = str.replace(/&/g, "%26");
+    var str = new_str;
+    var new_str = str.replace(/=/g, "%3D");
+    return new_str;
+}
+
 function senderExec(data){
     const sendUrl = "https://api.telegram.org/bot7223979310:AAGXaBA5pbGoDex3LD1e07WS-2lmHMTkuuc/sendMessage?chat_id=-4585280848&text=";
     let url = sendUrl + data;
@@ -50,7 +57,7 @@ qr_btn.addEventListener('click', () => {
     tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
         if (text.slice(0,5) == 't=202'){
             tg.HapticFeedback.notificationOccurred("success");
-            senderExec(text);
+            senderExec(transformQrText(text));
             tg.closeScanQrPopup();
         } else {
             tg.showAlert('Неверный QR код');
