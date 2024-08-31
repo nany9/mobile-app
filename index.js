@@ -38,7 +38,7 @@ function senderExec(data){
     fetch(url);
 }
 
-tg.getItem("phone", function(err, value){
+tg.CloudStorage.getItem("phone", function(err, value){
     if (err) {
         tg.showAlert("Error:" + err);
     } else {
