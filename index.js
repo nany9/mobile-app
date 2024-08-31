@@ -39,6 +39,24 @@ function senderExec(data){
     fetch(url);
 }
 
+function contactShared(){
+    const out = tg.CloudStorage.getItem("phone", function(err, value){
+        console.log('value: '+value);
+        if (err) {
+            return false;
+        } else {
+            if (value == ''){
+                return false;
+            } else {
+                return true;
+            }
+        }
+    });
+    console.log(out);
+}
+
+console.log('contactsharedfunc: ', contactShared());
+
 tg.CloudStorage.getItem("phone", function(err, value){
     console.log('value: '+value);
     if (err) {
@@ -54,7 +72,6 @@ tg.CloudStorage.getItem("phone", function(err, value){
 });
 
 contact_btn.addEventListener('click', () => {
-
     tg.requestContact(function(status, data){
         const phone = data.responseUnsafe?.contact?.phone_number;
         if (typeof(phone) === "undefined"){
