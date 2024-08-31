@@ -8,6 +8,10 @@ tg.MainButton.show();
 contact_btn.addEventListener('click', () => {
     tg.requestContact(function(status, data){
         const phone = data.responseUnsafe?.contact?.phone_number;
-        phone_input.value = phone;
+        if (typeof(phone) === "undefined"){
+            phone_input.value = "Нет доступа";
+        } else {
+            phone_input.value = phone;
+        }
     });
 });
