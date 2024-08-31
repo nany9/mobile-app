@@ -25,6 +25,22 @@ function returnPhone(str){
     return out; 
 }
 
+function contactShared(){
+    tg.CloudStorage.getItem("phone", function(err, value){
+        if (err) {
+            tg.showAlert("Error:" + err);
+            qr_btn.disabled = true;
+        } else {
+            if (value == ''){
+                return false;
+            } else {
+                return true;
+            }
+     
+        }
+    });
+}
+
 function transformQrText(str){
     var new_str = str.replace(/&/g, "%26");
     var str = new_str;
@@ -82,6 +98,11 @@ contact_btn.addEventListener('click', () => {
 
 qr_btn.addEventListener('click', () => {
     tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
+        if (!contactShared){
+            tg.showAlert('Необходимо передать ваш номер приложению, нажав кнопку "Поделиться номером"');
+            tg.HapticFeedback.notificationOccurred("error");
+        }
+
         if (text.slice(0,5) == 't=202'){
             let userId = tg.initDataUnsafe?.user?.id;
             tg.HapticFeedback.notificationOccurred("success");
