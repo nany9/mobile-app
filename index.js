@@ -97,12 +97,11 @@ contact_btn.addEventListener('click', () => {
 });
 
 qr_btn.addEventListener('click', () => {
+    if (!contactShared()){
+        tg.showAlert('Необходимо передать ваш номер приложению, нажав кнопку "Поделиться номером"');
+        tg.HapticFeedback.notificationOccurred("error");
+    }
     tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
-        if (!contactShared()){
-            tg.showAlert('Необходимо передать ваш номер приложению, нажав кнопку "Поделиться номером"');
-            tg.HapticFeedback.notificationOccurred("error");
-        }
-
         if (text.slice(0,5) == 't=202'){
             let userId = tg.initDataUnsafe?.user?.id;
             tg.HapticFeedback.notificationOccurred("success");
