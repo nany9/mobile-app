@@ -58,6 +58,8 @@ contact_btn.addEventListener('click', () => {
     tg.requestContact(function(status, data){
         const phone = data.responseUnsafe?.contact?.phone_number;
         if (typeof(phone) === "undefined"){
+            tg.showAlert("Для участия в акции необходимо предоставить номер телефона");
+            tg.HapticFeedback.notificationOccurred("error");
             phone_input.value = "Нет доступа";
         } else {
             phone_input.value = returnPhone(phone);
