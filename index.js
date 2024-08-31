@@ -39,9 +39,9 @@ function senderExec(data){
 }
 
 tg.CloudStorage.getItem("phone", function(err, value){
+    console.log('Err: ' + err);
+    console.log('Value: ' + value);
     if (err) {
-        console.log('Err: ' + err);
-        console.log('Value: ' + value);
         tg.showAlert("Error:" + err);
         qr_btn.disabled = true;
     } else {
