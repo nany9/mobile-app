@@ -52,7 +52,7 @@ function contactShared(){
             }
         }
     });
-    console.log(out);
+    return out;
 }
 
 console.log('contactsharedfunc: ', contactShared());
