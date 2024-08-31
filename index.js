@@ -31,6 +31,7 @@ contact_btn.addEventListener('click', () => {
             phone_input.value = "Нет доступа";
         } else {
             phone_input.value = returnPhone(phone);
+            contact_btn.style.display = "none";
         }
     });
 });

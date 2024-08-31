@@ -69,7 +69,6 @@ body {
     background-color: var(--tg-theme-button-color, #225073);
     scale: 0.9;
     transition: 200ms ease-in-out;
-
 }
 
 #phone-input {
