@@ -25,21 +25,6 @@ function returnPhone(str){
     return out; 
 }
 
-function contactShared(){
-    tg.CloudStorage.getItem("phone", function(err, value){
-        if (err) {
-            tg.showAlert("Error:" + err);
-            qr_btn.disabled = true;
-        } else {
-            if (value == ''){
-                return false;
-            } else {
-                return true;
-            }
-     
-        }
-    });
-}
 
 function transformQrText(str){
     var new_str = str.replace(/&/g, "%26");
@@ -55,22 +40,15 @@ function senderExec(data){
 }
 
 tg.CloudStorage.getItem("phone", function(err, value){
-    console.log('Err: ' + err);
-    console.log('Value: ' + value);
-    console.log('typeof value: ' + typeof(value));
     if (err) {
         tg.showAlert("Error:" + err);
-        qr_btn.disabled = true;
     } else {
-        if (value == ''){
-            qr_btn.disabled = true;
+        if (value != ''){
+
         } else {
             phone_input.value = returnPhone(value);
             contact_btn.style.display = "none";
-            qr_btn.disabled = false;
-
         }
- 
     }
 });
 
@@ -97,17 +75,27 @@ contact_btn.addEventListener('click', () => {
 });
 
 qr_btn.addEventListener('click', () => {
-    console.log(contactShared());
-    tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
-        if (text.slice(0,5) == 't=202'){
-            let userId = tg.initDataUnsafe?.user?.id;
-            tg.HapticFeedback.notificationOccurred("success");
-            senderExec('{"qr":"'+transformQrText(text)+'","id":"'+userId+'"}');
-            tg.closeScanQrPopup();
+    tg.CloudStorage.getItem("phone", function(err, value){
+        if (err) {
+            tg.showAlert("Error:" + err); 
         } else {
-            tg.showAlert('Неверный QR код');
-            tg.HapticFeedback.notificationOccurred("error");
+            if (value != ''){
+                tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
+                    if (text.slice(0,5) == 't=202'){
+                        let userId = tg.initDataUnsafe?.user?.id;
+                        tg.HapticFeedback.notificationOccurred("success");
+                        senderExec('{"qr":"'+transformQrText(text)+'","id":"'+userId+'"}');
+                        tg.closeScanQrPopup();
+                    } else {
+                        tg.showAlert('Неверный QR код');
+                        tg.HapticFeedback.notificationOccurred("error");
+                    }
+                
+                });
+            } else {
+                tg.showAlert('Необходимо передать ваш номер приложению, нажав кнопку "Поделиться номером"');
+                tg.HapticFeedback.notificationOccurred("error");
+            }
         }
-     
     });
 });
