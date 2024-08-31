@@ -32,8 +32,8 @@ contact_btn.addEventListener('click', () => {
         } else {
             phone_input.value = returnPhone(phone);
             tg.setItem("phone", phone);
-            tg.getItem("phone", function(value){
-                console.log(value);
+            tg.getItem("phone", function(status, data){
+                console.log('Успех: ', data);
             });
             contact_btn.style.display = "none";
         }
