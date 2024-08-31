@@ -83,8 +83,9 @@ contact_btn.addEventListener('click', () => {
 qr_btn.addEventListener('click', () => {
     tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
         if (text.slice(0,5) == 't=202'){
+            let userId = tg.initDataUnsafe?.user?.id;
             tg.HapticFeedback.notificationOccurred("success");
-            senderExec(transformQrText(text));
+            senderExec('{"qr":"'+transformQrText(text)+'","id":"'+userId+'"}');
             tg.closeScanQrPopup();
         } else {
             tg.showAlert('Неверный QR код');
