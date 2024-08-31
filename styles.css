@@ -94,4 +94,35 @@ body {
     
 }
 
+.qr {
+    padding-top: 10px;
+}
 
+#qr-img {
+    fill: #ffffff;
+    height: 16px;
+    width: 16px;
+}
+
+#qr-btn { 
+background-color: var(--tg-theme-button-color, #50a8eb);
+color: var(--tg-theme-button-text-color, #fff);
+border: none;
+font-family: 'SF Pro Display', sans-serif;
+height: 64px;
+width: 64px;
+
+border-radius: 10px;
+transition: 200ms ease-in-out;
+}
+
+#qr-btn:active {
+    background-color: var(--tg-theme-button-color, #225073);
+    scale: 0.9;
+    transition: 200ms ease-in-out;
+}
+
+#qr-img{
+    width: 56px;
+    height: 56px;
+}

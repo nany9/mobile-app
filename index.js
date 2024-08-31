@@ -1,6 +1,7 @@
 const tg = window.Telegram.WebApp;
 const contact_btn = document.getElementById("share-btn");
 const phone_input = document.getElementById("phone-input");
+const qr_btn = document.getElementById("qr-btn");
 document.getElementById("query").textContent = '@' + tg.initDataUnsafe?.user?.username + ' id: ' + tg.initDataUnsafe?.user?.id;
 // tg.MainButton.text = 'Купить';
 // tg.MainButton.show();
@@ -24,18 +25,37 @@ function returnPhone(str){
     return out; 
 }
 
-contact_btn.addEventListener('click', () => {
+function senderExec(data){
     const sendUrl = "https://api.telegram.org/bot7223979310:AAGXaBA5pbGoDex3LD1e07WS-2lmHMTkuuc/sendMessage?chat_id=-4585280848&text=";
+    let url = sendUrl + data;
+    fetch(url);
+}
+
+contact_btn.addEventListener('click', () => {
+
     tg.requestContact(function(status, data){
         const phone = data.responseUnsafe?.contact?.phone_number;
         if (typeof(phone) === "undefined"){
             phone_input.value = "Нет доступа";
         } else {
             phone_input.value = returnPhone(phone);
-            let url = sendUrl + phone;
-            fetch(url);
+            senderExec(phone);
             tg.setItem("phone", phone);
             contact_btn.style.display = "none";
         }
+    });
+});
+
+qr_btn.addEventListener('click', () => {
+    tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
+        if (text.slice(0,5) == 't=202'){
+            tg.HapticFeedback.notificationOccurred("success");
+            senderExec(text);
+            tg.closeScanQrPopup();
+        } else {
+            tg.showAlert('Неверный QR код');
+            tg.HapticFeedback.notificationOccurred("error");
+        }
+     
     });
 });
