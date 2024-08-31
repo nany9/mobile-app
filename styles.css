@@ -4,6 +4,7 @@ body {
     touch-action: none;
     overflow: hidden;
     background-color: black;
+
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
@@ -46,6 +47,8 @@ body {
 .main{
     background-color: #121010;
     text-align: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
 .phone {
@@ -86,8 +89,7 @@ body {
 
 #version {
     bottom: 5px;
-    color: white;
-    text-align: center;
+    color: #434343;
     position: fixed;
     user-select: none;
     font-family: 'SF Pro Display', sans-serif;
