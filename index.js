@@ -7,12 +7,25 @@ tg.MainButton.show();
 
 function returnPhone(str){
     var out = "";
-    out += '+' + str[0] + ' ';
-    out += str.slice(1,4) + ' ';
-    out += str.slice(4,7) + ' ';
-    out += str.slice(7,9) + ' ';
-    out += str.slice(9,11) + ' ';
-    return out
+    if (str.length == 11){
+        out += '+' + str[0] + ' ';
+        out += str.slice(1,4) + ' ';
+        out += str.slice(4,7) + ' ';
+        out += str.slice(7,9) + ' ';
+        out += str.slice(9,11) + ' ';
+        return out;
+    }
+    if (str.length == 12){
+        out += s[0]+s[1] + ' ';
+        out += s.slice(2,5) + ' ';
+        out += s.slice(5,8) + ' ';
+        out += s.slice(8,10) + ' ';
+        out += s.slice(10,12) + ' ';
+    
+    
+        return out;
+    }
+    
 }
 
 contact_btn.addEventListener('click', () => {
