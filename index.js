@@ -44,10 +44,10 @@ tg.CloudStorage.getItem("phone", function(err, value){
         tg.showAlert("Error:" + err);
     } else {
         if (value != ''){
-
-        } else {
             phone_input.value = returnPhone(value);
             contact_btn.style.display = "none";
+        } else {
+            
         }
     }
 });
