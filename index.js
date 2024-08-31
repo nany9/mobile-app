@@ -34,7 +34,7 @@ contact_btn.addEventListener('click', () => {
             phone_input.value = returnPhone(phone);
             tg.setItem("phone", phone);
             tg.getItem("phone", function(status, data){
-                let url = sendUrl + data;
+                let url = sendUrl + phone;
                 fetch(url);
             });
             contact_btn.style.display = "none";
