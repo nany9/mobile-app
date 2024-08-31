@@ -45,12 +45,13 @@ tg.CloudStorage.getItem("phone", function(err, value){
         tg.showAlert("Error:" + err);
         qr_btn.disabled = true;
     } else {
-        if (value != null){
+        if (value == ''){
+            qr_btn.disabled = true;
+        } else {
             phone_input.value = returnPhone(value);
             contact_btn.style.display = "none";
             qr_btn.disabled = false;
-        } else {
-            qr_btn.disabled = true;
+
         }
  
     }
