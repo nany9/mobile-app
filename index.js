@@ -38,6 +38,15 @@ function senderExec(data){
     fetch(url);
 }
 
+tg.getItem("phone", function(err, value){
+    if (err) {
+        tg.showAlert("Error:" + err);
+    } else {
+        phone_input.value = returnPhone(value);
+        contact_btn.style.display = "none";
+    }
+});
+
 contact_btn.addEventListener('click', () => {
 
     tg.requestContact(function(status, data){
@@ -49,9 +58,10 @@ contact_btn.addEventListener('click', () => {
             senderExec(phone);
             tg.CloudStorage.setItem("phone", phone, function(err, saved){
                 if (err){
-                    tg.showAlert("Erorr:" + err);
+                    tg.showAlert("Error:" + err);
                 } else {
-                    tg.showAlert("Saved: " + saved);
+                    tg.showAlert("Номер успешно сохранён");
+                    tg.HapticFeedback.notificationOccurred("success");
                 }
             });
             contact_btn.style.display = "none";
