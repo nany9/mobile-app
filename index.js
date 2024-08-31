@@ -12,7 +12,7 @@ function returnPhone(str){
         out += str.slice(1,4) + ' ';
         out += str.slice(4,7) + ' ';
         out += str.slice(7,9) + ' ';
-        out += str.slice(9,11) + ' ';
+        out += str.slice(9,11);
         return out;
     }
     if (str.length == 12){
@@ -20,7 +20,7 @@ function returnPhone(str){
         out += s.slice(2,5) + ' ';
         out += s.slice(5,8) + ' ';
         out += s.slice(8,10) + ' ';
-        out += s.slice(10,12) + ' ';
+        out += s.slice(10,12);
     
     
         return out;
@@ -34,7 +34,7 @@ contact_btn.addEventListener('click', () => {
         if (typeof(phone) === "undefined"){
             phone_input.value = "Нет доступа";
         } else {
-            phone_input.value = returnPhone(phone);
+            phone_input.value = phone;
         }
     });
 });
