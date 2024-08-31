@@ -40,14 +40,15 @@ function senderExec(data){
 }
 
 tg.CloudStorage.getItem("phone", function(err, value){
+    console.log('value: '+value);
     if (err) {
         tg.showAlert("Error:" + err);
     } else {
-        if (value != ''){
+        if (value == ''){
+
+        } else {
             phone_input.value = returnPhone(value);
             contact_btn.style.display = "none";
-        } else {
-            
         }
     }
 });
@@ -60,7 +61,6 @@ contact_btn.addEventListener('click', () => {
             phone_input.value = "Нет доступа";
         } else {
             phone_input.value = returnPhone(phone);
-            senderExec(phone);
             tg.CloudStorage.setItem("phone", phone, function(err, saved){
                 if (err){
                     tg.showAlert("Error:" + err);
