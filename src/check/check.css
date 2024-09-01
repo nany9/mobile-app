@@ -1,0 +1,52 @@
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
+body {
+    touch-action: none;
+    overflow: hidden;
+    background-color: black;
+
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    height: var(--tg-viewport-height);
+    text-align: center;
+}
+
+#test {
+    font-family: 'SF Pro Display', sans-serif;
+    color: white;
+    font-weight: 700;
+    font-size: 72px;
+    user-select: none;
+}
+
+.box {
+    background-color: #292223;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+
+    text-align: center;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+
+}
+
+.box span{
+    color: white;
+    user-select: none;
+    font-family: 'SF Pro Display', sans-serif;
+    color: white;
+}
+
+.main{
+    background-color: #121010;
+    text-align: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}

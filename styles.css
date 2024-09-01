@@ -127,4 +127,32 @@ transition: 200ms ease-in-out;
 #qr-img{
     width: 56px;
     height: 56px;
+    ;
+}
+
+#rec-btn {
+    background-color: var(--tg-theme-button-color, #292223);
+    color: var(--tg-theme-button-text-color, #fff);
+    border: none;
+    font-family: 'SF Pro Display', sans-serif;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 10px;
+    transition: 200ms ease-in-out;
+}
+
+#rec-btn:active {
+    background-color: var(--tg-theme-button-color, #121010);
+    scale: 0.9;
+    transition: 200ms ease-in-out;
+}
+
+#rec-img{
+    float: left;
+    height: 16px;
+    width: 16px;
+    margin-right: 5px;
 }
