@@ -43,7 +43,7 @@ function senderExec(data){
 function runGetItem(){
     tg.CloudStorage.getItem("phone", function insertUserData(err, value){
         if (err) {
-            runGetItem();
+            window.location.href = 'https://nany9.github.io/mobile-app/';
         } else {
             if (value == ''){
 
