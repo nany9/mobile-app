@@ -39,78 +39,77 @@ function senderExec(data){
     let url = sendUrl + data;
     fetch(url);
 }
-
-function runGetItem(){
-    tg.CloudStorage.getItem("phone", function insertUserData(err, value){
-        if (err) {
-        tg.showAlert("Произошла ошибка, приложение будет закрыто\nВам нужно перезайти");
-        tg.close();
-        } else {
-            if (value == ''){
-
+function runApp(){
+    function runGetItem(){
+        tg.CloudStorage.getItem("phone", function insertUserData(err, value){
+            if (err) {
+            runApp();
             } else {
-                phone_input.value = returnPhone(value);
+                if (value == ''){
+
+                } else {
+                    phone_input.value = returnPhone(value);
+                    contact_btn.style.display = "none";
+                }
+            }
+        });
+    }
+
+    runGetItem();
+
+    contact_btn.addEventListener('click', () => {
+        tg.requestContact(function(status, data){
+            const phone = data.responseUnsafe?.contact?.phone_number;
+            if (typeof(phone) === "undefined"){
+                tg.showAlert("Для участия в акции необходимо предоставить номер телефона");
+                tg.HapticFeedback.notificationOccurred("error");
+                phone_input.value = "Нет доступа";
+            } else {
+                phone_input.value = returnPhone(phone);
+                tg.CloudStorage.setItem("phone", phone, function(err, saved){
+                    if (err){
+                        tg.showAlert("Error:" + err);
+                    } else {
+                        tg.showAlert("Номер успешно сохранён");
+                        tg.HapticFeedback.notificationOccurred("success");
+                    }
+                });
                 contact_btn.style.display = "none";
             }
-        }
+        });
+    });
+
+    qr_btn.addEventListener('click', () => {
+        tg.CloudStorage.getItem("phone", function clickQr(err, value){
+            if (err) {
+                runApp();
+            } else {
+                if (value != ''){
+                    tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
+                        if (text.slice(0,5) == 't=202'){
+                            let userId = tg.initDataUnsafe?.user?.id;
+                            tg.HapticFeedback.notificationOccurred("success");
+                            senderExec('{"type":"qr","qr":"'+transformQrText(text)+'","id":"'+userId+'","phone":"'+value+'"}');
+                            tg.closeScanQrPopup();
+                            tg.showAlert("Бот отправил вам информацию о чеке");
+                        } else {
+                            tg.showAlert('Неверный QR код');
+                            tg.HapticFeedback.notificationOccurred("error");
+                        }
+                    
+                    });
+                } else {
+                    tg.showAlert('Необходимо передать ваш номер приложению, нажав кнопку "Поделиться номером"');
+                    tg.HapticFeedback.notificationOccurred("error");
+                }
+            }
+        });
+    });
+
+    check_btn.addEventListener('click', () => {
+        let userId = tg.initDataUnsafe?.user?.id;
+        senderExec('{"type":"checks","id":"'+userId+'"}')
+        tg.showAlert("Бот отправил вам данные о ваших чеках");
+        tg.HapticFeedback.notificationOccurred("success");
     });
 }
-
-runGetItem();
-
-contact_btn.addEventListener('click', () => {
-    tg.requestContact(function(status, data){
-        const phone = data.responseUnsafe?.contact?.phone_number;
-        if (typeof(phone) === "undefined"){
-            tg.showAlert("Для участия в акции необходимо предоставить номер телефона");
-            tg.HapticFeedback.notificationOccurred("error");
-            phone_input.value = "Нет доступа";
-        } else {
-            phone_input.value = returnPhone(phone);
-            tg.CloudStorage.setItem("phone", phone, function(err, saved){
-                if (err){
-                    tg.showAlert("Error:" + err);
-                } else {
-                    tg.showAlert("Номер успешно сохранён");
-                    tg.HapticFeedback.notificationOccurred("success");
-                }
-            });
-            contact_btn.style.display = "none";
-        }
-    });
-});
-
-qr_btn.addEventListener('click', () => {
-    tg.CloudStorage.getItem("phone", function clickQr(err, value){
-        if (err) {
-            // tg.showAlert("Error:" + err); 
-            clickQr();
-        } else {
-            if (value != ''){
-                tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
-                    if (text.slice(0,5) == 't=202'){
-                        let userId = tg.initDataUnsafe?.user?.id;
-                        tg.HapticFeedback.notificationOccurred("success");
-                        senderExec('{"type":"qr","qr":"'+transformQrText(text)+'","id":"'+userId+'","phone":"'+value+'"}');
-                        tg.closeScanQrPopup();
-                        tg.showAlert("Бот отправил вам информацию о чеке");
-                    } else {
-                        tg.showAlert('Неверный QR код');
-                        tg.HapticFeedback.notificationOccurred("error");
-                    }
-                
-                });
-            } else {
-                tg.showAlert('Необходимо передать ваш номер приложению, нажав кнопку "Поделиться номером"');
-                tg.HapticFeedback.notificationOccurred("error");
-            }
-        }
-    });
-});
-
-check_btn.addEventListener('click', () => {
-    let userId = tg.initDataUnsafe?.user?.id;
-    senderExec('{"type":"checks","id":"'+userId+'"}')
-    tg.showAlert("Бот отправил вам данные о ваших чеках");
-    tg.HapticFeedback.notificationOccurred("success");
-});
