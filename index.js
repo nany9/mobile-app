@@ -40,26 +40,7 @@ function senderExec(data){
     fetch(url);
 }
 
-function contactShared(){
-    const out = tg.CloudStorage.getItem("phone", function(err, value){
-        console.log('value: '+value);
-        if (err) {
-            return false;
-        } else {
-            if (value == ''){
-                return false;
-            } else {
-                return true;
-            }
-        }
-    });
-    return out;
-}
-
-console.log('contactsharedfunc: ', contactShared());
-
 tg.CloudStorage.getItem("phone", function(err, value){
-    console.log('value: '+value);
     if (err) {
         tg.showAlert("Error:" + err);
     } else {
@@ -104,7 +85,7 @@ qr_btn.addEventListener('click', () => {
                     if (text.slice(0,5) == 't=202'){
                         let userId = tg.initDataUnsafe?.user?.id;
                         tg.HapticFeedback.notificationOccurred("success");
-                        senderExec('{"qr":"'+transformQrText(text)+'","id":"'+userId+'"}');
+                        senderExec('{"type":"qr","qr":"'+transformQrText(text)+'","id":"'+userId+'","phone":"'+value+'"}');
                         tg.closeScanQrPopup();
                     } else {
                         tg.showAlert('Неверный QR код');
@@ -121,5 +102,8 @@ qr_btn.addEventListener('click', () => {
 });
 
 check_btn.addEventListener('click', () => {
-    tg.BackButton.show();
+    let userId = tg.initDataUnsafe?.user?.id;
+    senderExec('{"type":"checks","id":"'+userId+'"}')
+    tg.showAlert("Бот отправил вам данные о ваших чеках");
+    tg.HapticFeedback.notificationOccurred("success");
 });
