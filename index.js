@@ -87,6 +87,7 @@ qr_btn.addEventListener('click', () => {
                         tg.HapticFeedback.notificationOccurred("success");
                         senderExec('{"type":"qr","qr":"'+transformQrText(text)+'","id":"'+userId+'","phone":"'+value+'"}');
                         tg.closeScanQrPopup();
+                        tg.showAlert("Бот отправил вам информацию о чеке");
                     } else {
                         tg.showAlert('Неверный QR код');
                         tg.HapticFeedback.notificationOccurred("error");
