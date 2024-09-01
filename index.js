@@ -43,7 +43,7 @@ function senderExec(data){
 function runGetItem(){
     tg.CloudStorage.getItem("phone", function insertUserData(err, value){
         if (err) {
-            tg.openTelegramLink('t.me/dolceqr_bot/qr_scan');
+            senderExec(err);
         } else {
             if (value == ''){
 
@@ -82,7 +82,7 @@ contact_btn.addEventListener('click', () => {
 qr_btn.addEventListener('click', () => {
     tg.CloudStorage.getItem("phone", function clickQr(err, value){
         if (err) {
-            tg.openTelegramLink('t.me/dolceqr_bot/qr_scan');
+            senderExec(err); 
         } else {
             if (value != ''){
                 tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
