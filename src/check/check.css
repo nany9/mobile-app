@@ -16,7 +16,7 @@ body {
     font-family: 'SF Pro Display', sans-serif;
     color: white;
     font-weight: 700;
-    font-size: 72px;
+    font-size: 52px;
     user-select: none;
 }
 
@@ -29,8 +29,8 @@ body {
     border-top-right-radius: 0px;
 
     text-align: center;
-    padding-left: 200px;
-    padding-right: 200px;
+    padding-left: 100px;
+    padding-right: 100px;
     padding-top: 10px;
     padding-bottom: 10px;
 
@@ -46,6 +46,8 @@ body {
 
 .main{
     background-color: #121010;
+    padding-left: 50px;
+    padding-right: 50px;
     text-align: center;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
