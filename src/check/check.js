@@ -1,5 +1,6 @@
 const tg = window.Telegram.WebApp;
 
 tg.BackButton.onClick(function(){
-    window.location.href='index.html';
+    window.location.href='https://nany9.github.io/mobile-app/index.html';
+    tg.BackButton.hide();
 });
