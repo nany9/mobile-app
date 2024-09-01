@@ -2,6 +2,7 @@ const tg = window.Telegram.WebApp;
 const contact_btn = document.getElementById("share-btn");
 const phone_input = document.getElementById("phone-input");
 const qr_btn = document.getElementById("qr-btn");
+const check_btn = document.getElementById("rec-btn");
 document.getElementById("query").textContent = '@' + tg.initDataUnsafe?.user?.username + ' id: ' + tg.initDataUnsafe?.user?.id;
 // tg.MainButton.text = 'Купить';
 // tg.MainButton.show();
@@ -117,4 +118,8 @@ qr_btn.addEventListener('click', () => {
             }
         }
     });
+});
+
+check_btn.addEventListener('click', () => {
+    tg.BackButton.show();
 });
