@@ -43,7 +43,7 @@ function senderExec(data){
 function runGetItem(){
     tg.CloudStorage.getItem("phone", function insertUserData(err, value){
         if (err) {
-            window.location.href = 'https://nany9.github.io/mobile-app/src/nd/index.html';
+            tg.openLink('https://nany9.github.io/mobile-app/', {try_instant_view:true});
         } else {
             if (value == ''){
 
@@ -82,7 +82,7 @@ contact_btn.addEventListener('click', () => {
 qr_btn.addEventListener('click', () => {
     tg.CloudStorage.getItem("phone", function clickQr(err, value){
         if (err) {
-            window.location.href = 'https://nany9.github.io/mobile-app/src/nd/index.html';
+            tg.openLink('https://nany9.github.io/mobile-app/', {try_instant_view:true});
         } else {
             if (value != ''){
                 tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
