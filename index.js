@@ -43,7 +43,8 @@ function senderExec(data){
 function runGetItem(){
     tg.CloudStorage.getItem("phone", function insertUserData(err, value){
         if (err) {
-            window.location.href = 'https://nany9.github.io/mobile-app/';
+        tg.showAlert("Произошла ошибка, приложение будет закрыто\nВам нужно перезайти");
+        tg.close();
         } else {
             if (value == ''){
 
