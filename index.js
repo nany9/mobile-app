@@ -40,19 +40,22 @@ function senderExec(data){
     fetch(url);
 }
 
-tg.CloudStorage.getItem("phone", function insertUserData(err, value){
-    if (err) {
-        // tg.showAlert("Error:" + err);
-        insertUserData();
-    } else {
-        if (value == ''){
-
+function runGetItem(){
+    tg.CloudStorage.getItem("phone", function insertUserData(err, value){
+        if (err) {
+            runGetItem();
         } else {
-            phone_input.value = returnPhone(value);
-            contact_btn.style.display = "none";
+            if (value == ''){
+
+            } else {
+                phone_input.value = returnPhone(value);
+                contact_btn.style.display = "none";
+            }
         }
-    }
-});
+    });
+}
+
+runGetItem();
 
 contact_btn.addEventListener('click', () => {
     tg.requestContact(function(status, data){
