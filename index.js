@@ -76,10 +76,10 @@ contact_btn.addEventListener('click', () => {
 });
 
 qr_btn.addEventListener('click', () => {
-    tg.CloudStorage.getItem("phone", function(err, value){
+    tg.CloudStorage.getItem("phone", function clickQr(err, value){
         if (err) {
             // tg.showAlert("Error:" + err); 
-            location.reload();
+            clickQr();
         } else {
             if (value != ''){
                 tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
