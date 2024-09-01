@@ -40,9 +40,10 @@ function senderExec(data){
     fetch(url);
 }
 
-tg.CloudStorage.getItem("phone", function(err, value){
+tg.CloudStorage.getItem("phone", function insertUserData(err, value){
     if (err) {
-        tg.showAlert("Error:" + err);
+        // tg.showAlert("Error:" + err);
+        insertUserData();
     } else {
         if (value == ''){
 
