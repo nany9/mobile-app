@@ -43,7 +43,9 @@ function senderExec(data){
 function runGetItem(){
     tg.CloudStorage.getItem("phone", function insertUserData(err, value){
         if (err) {
-            senderExec(err);
+            tg.showAlert("Произошла ошибка, приложение будет закрыто\nВам необходимо перезайти");
+            tg.HapticFeedback.notificationOccurred("error");
+            tg.close();
         } else {
             if (value == ''){
 
@@ -82,7 +84,9 @@ contact_btn.addEventListener('click', () => {
 qr_btn.addEventListener('click', () => {
     tg.CloudStorage.getItem("phone", function clickQr(err, value){
         if (err) {
-            senderExec(err); 
+            tg.showAlert("Произошла ошибка, приложение будет закрыто\nВам необходимо перезайти");
+            tg.HapticFeedback.notificationOccurred("error");
+            tg.close();
         } else {
             if (value != ''){
                 tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
