@@ -116,6 +116,7 @@ qr_btn.addEventListener('click', () => {
                     }
                 
                 });
+                tg.HapticFeedback.ImpactOccured("heavy");
             } else {
                 tg.showAlert('Необходимо передать ваш номер приложению, нажав кнопку "Поделиться номером"');
                 tg.HapticFeedback.notificationOccurred("error");
