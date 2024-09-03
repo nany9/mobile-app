@@ -26,6 +26,13 @@ function returnPhone(str){
     return out; 
 }
 
+function checkNumber(s){
+    if ((s[0] == '7' && s.length == 11) || (s[0] == '+' && s[1] == '7' && s.length == '12')) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function transformQrText(str){
     var new_str = str.replace(/&/g, "%26");
@@ -67,16 +74,23 @@ contact_btn.addEventListener('click', () => {
             tg.HapticFeedback.notificationOccurred("error");
             phone_input.value = "Нет доступа";
         } else {
-            phone_input.value = returnPhone(phone);
-            tg.CloudStorage.setItem("phone", phone, function(err, saved){
-                if (err){
-                    tg.showAlert("Error:" + err);
-                } else {
-                    tg.showAlert("Номер успешно сохранён");
-                    tg.HapticFeedback.notificationOccurred("success");
-                }
-            });
-            contact_btn.style.display = "none";
+            if (checkNumber(phone)){
+                phone_input.value = returnPhone(phone);
+                tg.CloudStorage.setItem("phone", phone, function(err, saved){
+                    if (err){
+                        tg.showAlert("Произошла ошибка, приложение будет закрыто\nВам необходимо перезайти");
+                        tg.HapticFeedback.notificationOccurred("error");
+                        tg.close();
+                    } else {
+                        tg.showAlert("Номер успешно сохранён");
+                        tg.HapticFeedback.notificationOccurred("success");
+                    }
+                });
+                contact_btn.style.display = "none";
+            } else {
+                tg.showAlert("Некорректный номер");
+                tg.HapticFeedback.notificationOccurred("error");
+            }
         }
     });
 });
