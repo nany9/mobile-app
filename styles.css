@@ -3,7 +3,7 @@
 body {
     touch-action: none;
     overflow: hidden;
-    background-color: black;
+    background-color: white;
 
     max-width: fit-content;
     margin-left: auto;
