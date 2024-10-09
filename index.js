@@ -8,6 +8,10 @@ document.getElementById("query").textContent = tg.initDataUnsafe?.user?.first_na
 // tg.MainButton.text = 'Купить';
 // tg.MainButton.show();
 
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i
+    .test(navigator.userAgent)) {
+} else tg.close()
+
 function returnPhone(str){
     var out = "";
     if (str.length == 11){
