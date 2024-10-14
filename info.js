@@ -1,3 +1,5 @@
+const tg = window.Telegram.WebApp;
+
 function agree(){
     tg.requestContact(function(status, data){
         const phone = data.responseUnsafe?.contact?.phone_number;

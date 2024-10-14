@@ -161,3 +161,63 @@ transition: 200ms ease-in-out;
     width: 16px;
     margin-right: 5px;
 }
+
+.agree-div {
+    display: none;
+}
+
+.agree-main {
+    max-width: 690px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100vh;
+}
+
+.agreement-div{
+    max-height: 90vh;
+    overflow-y: scroll;
+    width: fit-content;
+    color: white;
+    font-family: 'SF Pro Display', sans-serif;
+
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+}
+
+#agree {
+    background-color: var(--tg-theme-button-color, #50a8eb);
+    color: var(--tg-theme-button-text-color, #fff);
+    border: none;
+    font-family: 'SF Pro Display', sans-serif;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25%;
+    padding-right: 25%;
+    border-radius: 10px;
+    transition: all 200ms ease-in-out;
+}
+
+#disagree {
+    background-color: #e65a30;
+    color: var(--tg-theme-button-text-color, #fff);
+    border: none;
+    font-family: 'SF Pro Display', sans-serif;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25%;
+    padding-right: 25%;
+    border-radius: 10px;
+    transition: all 200ms ease-in-out;
+}
+
+.buttons button:active {
+    scale: 0.9;
+    transition: 200ms ease-in-out;
+}
