@@ -8,10 +8,12 @@ body {
     max-width: 690px;
     margin-left: auto;
     margin-right: auto;
+    height: 100vh;
 }
 
 .agreement-div{
-
+    max-height: 90vh;
+    overflow-y: scroll;
     width: fit-content;
     color: white;
     font-family: 'SF Pro Display', sans-serif;
