@@ -85,7 +85,7 @@ function getWinners(){
 }
 
 function outWinners(text){
-    tg.showConfirm(text, function{
+    tg.showConfirm(text, function confirmation(){
         tg.requestContact(function(status, data){
             const phone = data.responseUnsafe?.contact?.phone_number;
             if (typeof(phone) === "undefined"){
@@ -117,7 +117,6 @@ function outWinners(text){
 }
 
 contact_btn.addEventListener('click', () => {
-
     getWinners();
 
 
