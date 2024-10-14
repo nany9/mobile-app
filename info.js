@@ -5,7 +5,7 @@ function agree(){
             tg.showAlert("Для участия в акции необходимо предоставить номер телефона");
             tg.HapticFeedback.notificationOccurred("error");
             phone_input.value = "Нет доступа";
-            location.href('https://nany9.github.io/mobile-app/');
+            location.href= 'https://nany9.github.io/mobile-app/';
         } else {
             if (checkNumber(phone)){
                 phone_input.value = returnPhone(phone);
@@ -15,7 +15,7 @@ function agree(){
                         tg.HapticFeedback.notificationOccurred("error");
                         tg.close();
                     } else {
-                        location.href('https://nany9.github.io/mobile-app/');
+                        location.href = 'https://nany9.github.io/mobile-app/';
                         tg.showAlert("Номер успешно сохранён");
                         tg.HapticFeedback.notificationOccurred("success");
                     }
@@ -30,5 +30,5 @@ function agree(){
 }
 
 function disagree(){
-    location.href('https://nany9.github.io/mobile-app/');
+    location.href = 'https://nany9.github.io/mobile-app/';
 }
