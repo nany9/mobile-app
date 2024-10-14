@@ -73,53 +73,8 @@ runGetItem();
 
 
 
-function getWinners(){
-
-    let url = 'https://raw.githubusercontent.com/nany9/mobile-app/refs/heads/main/agree.txt';
-    var data = '';
-    fetch(url)
-    .then(response => response.text())
-    .then(text => outWinners(text))
-    
-    
-}
-
-function outWinners(text){
-    tg.showConfirm(text, function confirmation(){
-        tg.requestContact(function(status, data){
-            const phone = data.responseUnsafe?.contact?.phone_number;
-            if (typeof(phone) === "undefined"){
-                tg.showAlert("Для участия в акции необходимо предоставить номер телефона");
-                tg.HapticFeedback.notificationOccurred("error");
-                phone_input.value = "Нет доступа";
-            } else {
-                if (checkNumber(phone)){
-                    phone_input.value = returnPhone(phone);
-                    tg.CloudStorage.setItem("phone", phone, function(err, saved){
-                        if (err){
-                            tg.showAlert("Произошла ошибка, приложение будет закрыто\nВам необходимо перезайти");
-                            tg.HapticFeedback.notificationOccurred("error");
-                            tg.close();
-                        } else {
-                            tg.showAlert("Номер успешно сохранён");
-                            tg.HapticFeedback.notificationOccurred("success");
-                        }
-                    });
-                    contact_btn.style.display = "none";
-                } else {
-                    tg.showAlert("Некорректный номер");
-                    tg.HapticFeedback.notificationOccurred("error");
-                }
-            }
-        });
-    });
-
-}
-
 contact_btn.addEventListener('click', () => {
-    getWinners();
-
-
+    location.href = 'https://nany9.github.io/mobile-app/info.html';
 });
 
 qr_btn.addEventListener('click', () => {
