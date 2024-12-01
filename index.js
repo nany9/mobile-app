@@ -121,7 +121,8 @@ qr_btn.addEventListener('click', () => {
             tg.close();
         } else {
             if (value != ''){
-                tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
+tg.showAlert("Акция завершена");
+                //tg.showScanQrPopup({text: "Отсканируйте QR-код на чеке"}, function(text){
                     if (text.slice(0,5) == 't=202'){
                         let userId = tg.initDataUnsafe?.user?.id;
                         tg.HapticFeedback.notificationOccurred("success");
@@ -145,7 +146,7 @@ qr_btn.addEventListener('click', () => {
 
 check_btn.addEventListener('click', () => {
     let userId = tg.initDataUnsafe?.user?.id;
-    senderExec('{"type":"checks","id":"'+userId+'"}')
-    tg.showAlert("Бот отправил вам данные о ваших чеках");
+    //senderExec('{"type":"checks","id":"'+userId+'"}')
+    tg.showAlert("Акция завершена");
     tg.HapticFeedback.notificationOccurred("success");
 });
